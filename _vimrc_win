@@ -1,0 +1,57 @@
+cd $HOME/workspace/
+
+let g:fullScreened = 0
+function ToggleFullscreen()
+	if g:fullScreened == 0
+		let g:fullScreened = 1
+		simalt ~x
+	else
+		let g:fullScreened = 0
+		simalt ~r
+	endif
+endfunction
+
+map <F11> :call ToggleFullscreen()<CR>
+
+" Set UI lang
+set langmenu=en_US
+let $LANG = 'en_US'
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+" Hide tooltip
+set guioptions-=T
+set guioptions-=m
+
+" Scp stuff
+
+function ScpHome(path)
+	let g:netrw_scp_cmd = "pscp -q -i ".$HOME."\\key\\home.ppk"
+	let g:netrw_list_cmd = "plink -i ".$HOME."\\key\\home.ppk HOSTNAME ls -Fa "
+	execute "e! scp://lain@xyzith.hopto.org/".a:path."/"
+endfunction
+
+command! -nargs=1 Home call ScpHome(<f-args>)
+
+
+function TexCompile()
+	let l:path =  expand('%:h')
+	let l:file = expand('%:t')
+	let l:shortfile = expand('%:t:r')
+	if &ft == 'tex'
+		execute "!cd ".l:path." & pdflatex ".l:file." & pdflatex ".l:file." & start ".l:shortfile.".pdf"
+	endif
+endfunction
+
+function HaskellRun()
+	exec "!ghc ".@%." & ".expand('%:r').".exe"
+endfunction
+
+function LuaRun()
+	exec "!lua53 ".@%
+endfunction
+
+
+noremap <Leader>T :call TexCompile() <CR>
+noremap <Leader>H :call HaskellRun() <CR>
+noremap <Leader>L :call LuaRun() <CR>

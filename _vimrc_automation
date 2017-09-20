@@ -1,0 +1,42 @@
+" Run automation
+
+function GetConfig()
+	if winnr('$') == 2
+		wincmd w
+		let l:case = @%
+		wincmd w
+		return l:case
+	endif
+endfunction
+
+
+function TestSuite()
+	let l:currwin = winnr()
+	let t:suitePath = ''
+	let t:casePath = ''
+	windo call SetMochaTest()
+	execute l:currwin.'wincmd w'
+	if t:suitePath == ''
+		let t:suitePath = expand('%:p')
+	endif
+	execute "!start cmd /c \"cd ".$NODE_HOME." & node runMocha.js ".t:suitePath." ".t:casePath."\" & pause"
+endfunction
+
+function SetMochaTest()
+	if exists("w:suite")
+		if w:suite == 1
+			let t:suitePath = expand('%:p')
+		endif
+	endif
+	if exists("w:case")
+		if w:case == 1
+			let t:casePath = expand('%:p')
+		endif
+	endif
+endfunction
+
+
+
+let $NODE_HOME = $HOME."/workspace/git/automation"
+
+noremap <Leader>a :call TestSuite() <CR>
