@@ -9,6 +9,7 @@ set backup		" keep a backup file
 set backupdir=$HOME/workspace/vimtmp/
 set backspace=indent,eol,start
 set list lcs=tab:\|\ 
+autocmd GUIEnter * set noerrorbells visualbell t_vb=
 set noerrorbells visualbell t_vb=
 
 if has('mouse')
@@ -55,11 +56,9 @@ endfunction
 set cursorcolumn
 
 " syntax
-autocmd GUIEnter * set visualbell t_vb=
-autocmd BufEnter * :syntax sync fromstart
+autocmd BufReadPost * :syntax sync fromstart
 autocmd BufWritePost * :syntax sync fromstart
-syntax sync minlines=1000
-let c_minlines=1000
+autocmd FileType * :syntax sync fromstart
 
 " My command
 command! -nargs=1 Stt call Stt(<f-args>)
