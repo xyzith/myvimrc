@@ -6,9 +6,10 @@ set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set ai
 set backup		" keep a backup file
-set backupdir=$HOME/workspace/vimtmp/
+set backupdir=$HOME/Documents/vim/vimtmp/
+set directory=$HOME/Documents/vim/vimswp/
 set backspace=indent,eol,start
-set list lcs=tab:\|\ 
+set list lcs=tab:\|\
 autocmd GUIEnter * set noerrorbells visualbell t_vb=
 set noerrorbells visualbell t_vb=
 
@@ -59,7 +60,7 @@ set cursorcolumn
 autocmd BufReadPost * :syntax sync fromstart
 autocmd BufWritePost * :syntax sync fromstart
 autocmd FileType * :syntax sync fromstart
-
+autocmd BufEnter * :cd %:p:h
 " My command
 command! -nargs=1 Stt call Stt(<f-args>)
 command! -nargs=1 Tts call Tts(<f-args>)
@@ -73,6 +74,4 @@ noremap <Leader>z /{<CR>zfa}:noh<CR>
 noremap <Leader>r :syntax sync fromstart <CR>
 
 " Other source
-so $VIM/_vimrc_win
-so $VIM/_vimrc_ffn
-so $VIM/_vimrc_automation
+so $HOME/Documents/vim/_vimrc_win

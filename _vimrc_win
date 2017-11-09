@@ -1,6 +1,5 @@
-cd $HOME/workspace/
-
 let g:fullScreened = 0
+execute pathogen#infect()
 function ToggleFullscreen()
 	if g:fullScreened == 0
 		let g:fullScreened = 1
@@ -10,6 +9,10 @@ function ToggleFullscreen()
 		simalt ~r
 	endif
 endfunction
+
+" autostart nerdtree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 map <F11> :call ToggleFullscreen()<CR>
 
@@ -33,7 +36,6 @@ endfunction
 
 command! -nargs=1 Home call ScpHome(<f-args>)
 
-
 function TexCompile()
 	let l:path =  expand('%:h')
 	let l:file = expand('%:t')
@@ -55,3 +57,7 @@ endfunction
 noremap <Leader>T :call TexCompile() <CR>
 noremap <Leader>H :call HaskellRun() <CR>
 noremap <Leader>L :call LuaRun() <CR>
+noremap <Leader>N :!start cmd /C npm start && pause <CR>
+noremap <Leader>l :SyntasticToggleMode <CR>
+
+so $HOME/Documents/vim/_vimrc_eslint
