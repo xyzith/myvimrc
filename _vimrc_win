@@ -10,10 +10,6 @@ function ToggleFullscreen()
 	endif
 endfunction
 
-" autostart nerdtree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 map <F11> :call ToggleFullscreen()<CR>
 
 " Set UI lang
@@ -25,16 +21,6 @@ source $VIMRUNTIME/menu.vim
 " Hide tooltip
 set guioptions-=T
 set guioptions-=m
-
-" Scp stuff
-
-function ScpHome(path)
-	let g:netrw_scp_cmd = "pscp -q -i ".$HOME."\\key\\home.ppk"
-	let g:netrw_list_cmd = "plink -i ".$HOME."\\key\\home.ppk HOSTNAME ls -Fa "
-	execute "e! scp://lain@xyzith.hopto.org/".a:path."/"
-endfunction
-
-command! -nargs=1 Home call ScpHome(<f-args>)
 
 function TexCompile()
 	let l:path =  expand('%:h')
@@ -60,4 +46,4 @@ noremap <Leader>L :call LuaRun() <CR>
 noremap <Leader>N :!start cmd /C npm start && pause <CR>
 noremap <Leader>l :SyntasticToggleMode <CR>
 
-so $HOME/Documents/vim/_vimrc_eslint
+so $HOME/Documents/vim/_vimrc_cherry

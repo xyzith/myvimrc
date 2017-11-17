@@ -1,0 +1,16 @@
+" Scp stuff
+
+function Scplocal(path)
+	let g:netrw_scp_cmd = "pscp -q -i ".$home."\\documents\\key\\local.ppk"
+	execute "e! scp://taylor@127.0.0.1/".a:path."/"
+endfunction
+
+function Scphome(path)
+	let g:netrw_scp_cmd = "pscp -q -i ".$home."\\documents\\key\\home.ppk"
+	execute "e! scp://lain@taylort.hopto.org/".a:path."/"
+endfunction
+
+command! -nargs=1 Home call ScpHome(<f-args>)
+command! -nargs=1 Local call Scplocal(<f-args>)
+
+so $HOME/Documents/vim/_vimrc_eslint
