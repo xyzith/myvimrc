@@ -12,6 +12,8 @@ set backspace=indent,eol,start
 set list lcs=tab:\|\
 autocmd GUIEnter * set noerrorbells visualbell t_vb=
 set noerrorbells visualbell t_vb=
+set modelines=0
+set nomodeline
 
 if has('mouse')
 	set mouse=a
@@ -52,15 +54,20 @@ function Tts(p1)
 	retab!
 endfunction
 
+function Cd()
+	if matchstr(expand("%:p"), '\zsscp') == ''
+		execute ":cd %:p:h"
+	endif
+endfunction
 " Cursor stuff
-"set cursorline
+" set cursorline
 set cursorcolumn
 
 " syntax
 autocmd BufReadPost * :syntax sync fromstart
 autocmd BufWritePost * :syntax sync fromstart
 autocmd FileType * :syntax sync fromstart
-autocmd BufEnter * :cd %:p:h
+autocmd BufEnter * :call Cd()
 " My command
 command! -nargs=1 Stt call Stt(<f-args>)
 command! -nargs=1 Tts call Tts(<f-args>)
