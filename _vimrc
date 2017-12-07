@@ -6,8 +6,6 @@ set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set ai
 set backup		" keep a backup file
-set backupdir=$HOME/Documents/vim/vimtmp/
-set directory=$HOME/Documents/vim/vimswp/
 set backspace=indent,eol,start
 set list lcs=tab:\|\
 autocmd GUIEnter * set noerrorbells visualbell t_vb=
@@ -25,8 +23,8 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+			\ | wincmd p | diffthis
 endif
 
 colorscheme candycode
@@ -54,24 +52,25 @@ function Tts(p1)
 	retab!
 endfunction
 
-function Cd()
-	if matchstr(expand("%:p"), '\zsscp') == ''
-		execute ":cd %:p:h"
-	endif
-endfunction
 " Cursor stuff
-" set cursorline
+set cursorline
 set cursorcolumn
+" cursorline but in diffmode
+autocmd FilterWritePre * if &diff | set nocursorline | endif
+
+" Font
+set guifont=Fira\ Code\ Retina:h12
 
 " syntax
 autocmd BufReadPost * :syntax sync fromstart
 autocmd BufWritePost * :syntax sync fromstart
 autocmd FileType * :syntax sync fromstart
-autocmd BufEnter * :call Cd()
+
 " My command
 command! -nargs=1 Stt call Stt(<f-args>)
 command! -nargs=1 Tts call Tts(<f-args>)
 command! File execute "let @* = expand('%:t')"
+" autocmd BufEnter * if matchstr(expand("%:p"), '\zsscp') == '' | cd %:p:h | endif
 
 " Leadeer key
 noremap <Leader>j :set ft=javascript <CR>

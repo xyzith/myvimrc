@@ -1,3 +1,7 @@
+" backup and swap dir
+set backupdir=$HOME/.vim/vimtmp/
+set dir=$HOME/.vim/vimswp/
+
 " Set display color
 set t_Co=256
 
