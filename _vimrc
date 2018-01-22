@@ -82,4 +82,4 @@ noremap <Leader>' bi'<ESC>ea'<ESC>
 noremap <Leader>" bi"<ESC>ea"<ESC>
 
 " Other source
-so $HOME/Documents/vim/_vimrc_win
+so $HOME/local/vim/_vimrc_os
