@@ -50,4 +50,4 @@ noremap <Leader>L :call LuaRun() <CR>
 noremap <Leader>N :!start cmd /C npm start && pause <CR>
 noremap <Leader>l :SyntasticToggleMode <CR>
 
-so $HOME/Documents/vim/_vimrc_cherry
+execute "so ".g:rc_path."_vimrc_cherry"

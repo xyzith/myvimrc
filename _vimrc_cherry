@@ -13,5 +13,5 @@ endfunction
 command! -nargs=1 Home call Scphome(<f-args>)
 command! -nargs=1 Local call Scplocal(<f-args>)
 
-so $HOME/Documents/vim/_vimrc_eslint
-so $HOME/Documents/vim/_vimrc_typescript
+execute "so ".g:rc_path."_vimrc_eslint"
+execute "so ".g:rc_path."_vimrc_typescript"
