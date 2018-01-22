@@ -1,6 +1,6 @@
 " backup and swap dir
-set backupdir=$HOME/Documents/vim/vimtmp/
-set directory=$HOME/Documents/vim/vimswp/
+execute "set backupdir=".g:rc_path."vimtmp"
+execute "set directory=".g:rc_path."vimswp"
 
 let g:fullScreened = 0
 execute pathogen#infect()
