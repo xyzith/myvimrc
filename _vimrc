@@ -7,7 +7,7 @@ set incsearch		" do incremental searching
 set ai
 set backup		" keep a backup file
 set backspace=indent,eol,start
-set list lcs=tab:\|\
+set list lcs=tab:\|\ 
 autocmd GUIEnter * set noerrorbells visualbell t_vb=
 set noerrorbells visualbell t_vb=
 set modelines=0
@@ -78,6 +78,8 @@ noremap <Leader>h :set ft=html <CR>
 noremap <Leader>c :set ft=css <CR>
 noremap <Leader>z /{<CR>zfa}:noh<CR>
 noremap <Leader>r :syntax sync fromstart <CR>
+noremap <Leader>' bi'<ESC>ea'<ESC>
+noremap <Leader>" bi"<ESC>ea"<ESC>
 
 " Other source
 so $HOME/Documents/vim/_vimrc_win
