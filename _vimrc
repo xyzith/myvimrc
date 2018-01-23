@@ -13,6 +13,8 @@ set noerrorbells visualbell t_vb=
 set modelines=0
 set nomodeline
 
+cd $Home
+
 if has('mouse')
 	set mouse=a
 endif
@@ -26,8 +28,6 @@ if !exists(":DiffOrig")
 	command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 			\ | wincmd p | diffthis
 endif
-
-colorscheme candycode
 
 " Set lang
 set fileencoding=utf-8
@@ -52,11 +52,16 @@ function Tts(p1)
 	retab!
 endfunction
 
+function CD(todo)
+" TODO
+endfunction
+
 " Cursor stuff
 set cursorline
 set cursorcolumn
-" cursorline but in diffmode
-autocmd FilterWritePre * if &diff | set nocursorline | endif
+
+" disable cursorline in diffmode
+" autocmd FilterWritePre * if &diff | set nocursorline | endif
 
 " Font
 set guifont=Fira\ Code\ Retina:h12
@@ -70,7 +75,8 @@ autocmd FileType * :syntax sync fromstart
 command! -nargs=1 Stt call Stt(<f-args>)
 command! -nargs=1 Tts call Tts(<f-args>)
 command! File execute "let @* = expand('%:t')"
-" autocmd BufEnter * if matchstr(expand("%:p"), '\zsscp') == '' | cd %:p:h | endif
+
+autocmd BufEnter * if matchstr(expand("%:p"), '\zsscp') == '' | cd %:p:h | endif
 
 " Leadeer key
 noremap <Leader>j :set ft=javascript <CR>

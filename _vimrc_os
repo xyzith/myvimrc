@@ -43,6 +43,7 @@ function LuaRun()
 	exec "!lua53 ".@%
 endfunction
 
+colorscheme srcery-drk
 
 noremap <Leader>T :call TexCompile() <CR>
 noremap <Leader>H :call HaskellRun() <CR>
