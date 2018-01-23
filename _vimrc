@@ -13,7 +13,7 @@ set noerrorbells visualbell t_vb=
 set modelines=0
 set nomodeline
 
-cd $Home
+cd $HOME
 
 if has('mouse')
 	set mouse=a
