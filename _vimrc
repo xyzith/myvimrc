@@ -13,7 +13,7 @@ set noerrorbells visualbell t_vb=
 set modelines=0
 set nomodeline
 
-" cd $HOME
+cd $HOME
 
 let skip_default_vim=1
 set viminfo=""
