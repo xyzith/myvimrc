@@ -15,6 +15,9 @@ set nomodeline
 
 cd $HOME
 
+let skip_default_vim=1
+set viminfo=""
+
 if has('mouse')
 	set mouse=a
 endif
