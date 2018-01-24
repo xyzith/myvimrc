@@ -13,7 +13,7 @@ set noerrorbells visualbell t_vb=
 set modelines=0
 set nomodeline
 
-cd $HOME
+" cd $HOME
 
 let skip_default_vim=1
 set viminfo=""
@@ -55,10 +55,6 @@ function Tts(p1)
 	retab!
 endfunction
 
-function CD(todo)
-" TODO
-endfunction
-
 " Cursor stuff
 set cursorline
 set cursorcolumn
@@ -79,7 +75,7 @@ command! -nargs=1 Stt call Stt(<f-args>)
 command! -nargs=1 Tts call Tts(<f-args>)
 command! File execute "let @* = expand('%:t')"
 
-autocmd BufEnter * if matchstr(expand("%:p"), '\zsscp') == '' | cd %:p:h | endif
+autocmd BufEnter * if &diff == 0 && matchstr(expand("%:p"), '\zsscp') == '' | cd %:p:h | endif
 
 " Leadeer key
 noremap <Leader>j :set ft=javascript <CR>
