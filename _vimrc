@@ -87,5 +87,8 @@ noremap <Leader>r :syntax sync fromstart <CR>
 noremap <Leader>' bi'<ESC>ea'<ESC>
 noremap <Leader>" bi"<ESC>ea"<ESC>
 
+" pathogen
+execute pathogen#infect()
+
 " Other source
 execute "so ".g:rc_path."_vimrc_os"
