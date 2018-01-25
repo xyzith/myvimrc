@@ -55,4 +55,4 @@ execute "so ".g:rc_path."_vimrc_cherry"
 
 let NERDTreeQuitOnOpen=1
 noremap <Leader>n :tabnew \| :NERDTree<CR>
-noremap <Leader>n :vnew \| :NERDTree<CR>
+noremap <Leader>v :vnew \| :NERDTree<CR>
