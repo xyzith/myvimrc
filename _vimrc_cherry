@@ -14,4 +14,3 @@ command! -nargs=1 Home call Scphome(<f-args>)
 command! -nargs=1 Local call Scplocal(<f-args>)
 
 execute "so ".g:rc_path."_vimrc_eslint"
-execute "so ".g:rc_path."_vimrc_typescript"
