@@ -52,3 +52,7 @@ noremap <Leader>N :!start cmd /C npm start && pause <CR>
 noremap <Leader>l :SyntasticToggleMode <CR>
 
 execute "so ".g:rc_path."_vimrc_cherry"
+
+let NERDTreeQuitOnOpen=1
+noremap <Leader>n :tabnew \| :NERDTree<CR>
+noremap <Leader>n :vnew \| :NERDTree<CR>
