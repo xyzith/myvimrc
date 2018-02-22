@@ -86,6 +86,7 @@ noremap <Leader>z /{<CR>zfa}:noh<CR>
 noremap <Leader>r :syntax sync fromstart <CR>
 noremap <Leader>' bi'<ESC>ea'<ESC>
 noremap <Leader>" bi"<ESC>ea"<ESC>
+noremap <Leader>} bi{ <ESC>ea }<ESC>
 
 " pathogen
 execute pathogen#infect()

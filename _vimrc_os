@@ -51,8 +51,24 @@ noremap <Leader>L :call LuaRun() <CR>
 noremap <Leader>N :!start cmd /C npm start && pause <CR>
 noremap <Leader>l :SyntasticToggleMode <CR>
 
-execute "so ".g:rc_path."_vimrc_cherry"
+" scp stuff
+
+function scplocal(path)
+	let g:netrw_scp_cmd = "pscp -q -i ".$home."\\keys\\local.ppk"
+	execute "e! scp://taylor@127.0.0.1/".a:path."/"
+endfunction
+
+function scphome(path)
+	let g:netrw_scp_cmd = "pscp -q -i ".$home."\\keys\\home.ppk"
+	execute "e! scp://lain@taylort.hopto.org/".a:path."/"
+endfunction
+
+command! -nargs=1 home call scphome(<f-args>)
+command! -nargs=1 local call scplocal(<f-args>)
+
+execute "so ".g:rc_path."_vimrc_eslint"
 
 let NERDTreeQuitOnOpen=1
 noremap <Leader>n :tabnew \| :NERDTree<CR>
 noremap <Leader>v :vnew \| :NERDTree<CR>
+
