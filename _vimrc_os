@@ -49,7 +49,6 @@ noremap <Leader>T :call TexCompile() <CR>
 noremap <Leader>H :call HaskellRun() <CR>
 noremap <Leader>L :call LuaRun() <CR>
 noremap <Leader>N :!start cmd /C npm start && pause <CR>
-noremap <Leader>l :SyntasticToggleMode <CR>
 
 " scp stuff
 
