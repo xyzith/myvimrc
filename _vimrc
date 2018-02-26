@@ -7,18 +7,21 @@ set incsearch		" do incremental searching
 set ai
 set backup		" keep a backup file
 set backspace=indent,eol,start
-set list lcs=tab:\|\ 
+set list lcs=tab:\|\ ,trail:-
 autocmd GUIEnter * set noerrorbells visualbell t_vb=
+set formatoptions=tcqj
 set noerrorbells visualbell t_vb=
 set modelines=0
 set nomodeline
 
+set ttyfast
+
+set wildmenu
+set wildmode=full,list:longest
+
 let skip_default_vim=1
 set viminfo=""
 
-if has('mouse')
-	set mouse=a
-endif
 
 if &t_Co > 2 || has("gui_running")
 	syntax on
@@ -30,6 +33,9 @@ if !exists(":DiffOrig")
 			\ | wincmd p | diffthis
 endif
 
+" Fix wide char
+set ambiwidth=double
+
 " Set lang
 set fileencoding=utf-8
 set enc=utf-8
@@ -38,6 +44,7 @@ set enc=utf-8
 set guitablabel=%t
 
 " Cov tab and space
+set smarttab
 function Stt(p1)
 	execute "set tabstop=".a:p1
 	set noexpandtab
@@ -93,3 +100,5 @@ execute pathogen#infect()
 
 " Other source
 execute "so ".g:rc_path."_vimrc_os"
+
+set mouse=c
