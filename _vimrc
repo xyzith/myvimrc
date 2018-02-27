@@ -14,7 +14,7 @@ set noerrorbells visualbell t_vb=
 set modelines=0
 set nomodeline
 
-set ttyfast
+" set ttyfast
 
 set wildmenu
 set wildmode=full,list:longest
