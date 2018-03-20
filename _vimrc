@@ -80,7 +80,6 @@ command! -nargs=1 Stt call Stt(<f-args>)
 command! -nargs=1 Tts call Tts(<f-args>)
 command! File execute "let @* = expand('%:t')"
 if &diff == 0
-	cd $HOME
 	autocmd BufEnter * if matchstr(expand("%:p"), '\zsscp') == '' | cd %:p:h | endif
 endif
 
