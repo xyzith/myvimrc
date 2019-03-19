@@ -1,5 +1,16 @@
 " eslint checker and formatters
+let g:syntastic_mode_map = { 'mode': 'passive' }
 let g:syntastic_javascript_checkers = []
+
+function ToggleChecker()
+	if exists('b:syntastic_private_balloons')
+		exec ':SyntasticReset'
+	else
+		exec ':SyntasticCheck'
+	endif
+	echo ''
+endfunction
+
 autocmd FileType javascript let b:syntastic_checkers = syntastic#util#findFileInParent('.eslintrc', expand('%:p:h', 1)) !=# '' ? ['eslint'] : []
 
-noremap <Leader>l :SyntasticToggleMode <CR>
+noremap <Leader>l :call ToggleChecker() <CR>

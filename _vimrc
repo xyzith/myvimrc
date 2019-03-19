@@ -98,6 +98,10 @@ noremap <Leader>} bi{ <ESC>ea }<ESC>
 execute pathogen#infect()
 
 " Other source
-execute "so ".g:rc_path."_vimrc_os"
+if has('unix')
+	execute "so ".g:rc_path."_vimrc_linux"
+else
+	execute "so ".g:rc_path."_vimrc_win"
+endif
 
 set mouse=c
