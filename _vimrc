@@ -105,3 +105,6 @@ else
 endif
 
 set mouse=c
+
+" Disable automatic comment insertion
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
