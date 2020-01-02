@@ -55,8 +55,18 @@ command! -bar RangerChooser call RangeChooser()
 execute "so ".g:rc_path."tabline.vim"
 execute "so ".g:rc_path."_vimrc_eslint"
 
+function TexCompile()
+	let l:path =  expand('%:h')
+	let l:file = expand('%:t')
+	let l:shortfile = expand('%:t:r')
+	if &ft == 'tex'
+		execute '!cmd.exe /c "cd '.l:path.' & pdflatex '.l:file.' & pdflatex '.l:file.' & start '.l:shortfile.'.pdf"'
+	endif
+endfunction
+
 noremap <Leader>n :tabnew \| call RangeChooser()<CR>
 noremap <Leader>v :vnew \| call RangeChooser()<CR>
+noremap <Leader>T :call TexCompile() <CR>
 
 " let &t_SI .= "\e[5 q"
 " let &t_EI .= "\e[1 q"

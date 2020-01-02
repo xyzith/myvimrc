@@ -93,7 +93,7 @@ noremap <Leader>" bi"<ESC>ea"<ESC>
 noremap <Leader>} bi{ <ESC>ea }<ESC>
 
 " pathogen
-execute pathogen#infect()
+" execute pathogen#infect()
 
 " Other source
 if has('unix')
