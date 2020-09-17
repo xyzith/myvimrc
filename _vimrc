@@ -14,6 +14,10 @@ set noerrorbells visualbell t_vb=
 set modelines=0
 set nomodeline
 
+" bufdo hidden buffers
+
+set hidden
+
 " set ttyfast
 
 set wildmenu
@@ -80,10 +84,7 @@ autocmd FileType * :syntax sync fromstart
 command! -nargs=1 Stt call Stt(<f-args>)
 command! -nargs=1 Tts call Tts(<f-args>)
 command! Filename execute "let @+ = expand('%:t')"
-if &diff == 0
-	autocmd BufEnter * if matchstr(expand("%:p"), '\zsscp') == '' | cd %:p:h | endif
-endif
-
+set autochdir
 
 " Leadeer key
 noremap <Leader>z /{<CR>zfa}:noh<CR>
@@ -92,8 +93,6 @@ noremap <Leader>' bi'<ESC>ea'<ESC>
 noremap <Leader>" bi"<ESC>ea"<ESC>
 noremap <Leader>} bi{ <ESC>ea }<ESC>
 
-" pathogen
-" execute pathogen#infect()
 
 " Other source
 if has('unix')

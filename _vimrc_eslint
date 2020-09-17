@@ -1,16 +1,6 @@
 let g:ale_fixers = {'javascript': ['eslint']}
 let g:ale_linters = {'javascript': ['eslint']}
-
-function AutoFixJS()
-	if g:ale_enabled
-		exec ':ALEToggle'
-		exec ':ALEFix'
-	else
-		exec ':ALEToggle'
-	endif
-	echo ''
-endfunction
-
 let g:ale_enabled = 0
 
-noremap <Leader>f :call AutoFixJS() <CR>
+noremap <Leader>f :ALEFix <CR>
+noremap <Leader>l :ALEToggle <CR>

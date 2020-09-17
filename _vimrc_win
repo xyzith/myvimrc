@@ -1,7 +1,7 @@
 " backup and swap dir
 cd $HOME
-execute "set backupdir=".g:rc_path."vimtmp"
-execute "set directory=".g:rc_path."vimswp"
+execute "set backupdir=".g:rc_path."../vimtmp"
+execute "set directory=".g:rc_path."../vimswp"
 
 let g:fullScreened = 0
 
@@ -52,6 +52,7 @@ noremap <Leader>L :call LuaRun() <CR>
 noremap <Leader>N :!start cmd /C npm start && pause <CR>
 
 execute "so ".g:rc_path."_vimrc_eslint"
+call pathogen#infect()
 
 let NERDTreeQuitOnOpen=1
 noremap <Leader>n :tabnew \| :NERDTree<CR>
