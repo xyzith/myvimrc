@@ -26,6 +26,7 @@ set wildmode=full,list:longest
 let skip_default_vim=1
 set viminfo=""
 
+set mouse=c
 
 if &t_Co > 2 || has("gui_running")
 	syntax on
@@ -86,13 +87,13 @@ command! -nargs=1 Tts call Tts(<f-args>)
 command! Filename execute "let @+ = expand('%:t')"
 set autochdir
 
+
 " Leadeer key
 noremap <Leader>z /{<CR>zfa}:noh<CR>
 noremap <Leader>r :syntax sync fromstart <CR>
 noremap <Leader>' bi'<ESC>ea'<ESC>
 noremap <Leader>" bi"<ESC>ea"<ESC>
 noremap <Leader>} bi{ <ESC>ea }<ESC>
-
 
 " Other source
 if has('unix')
@@ -101,7 +102,15 @@ else
 	execute "so ".g:rc_path."_vimrc_win"
 endif
 
-set mouse=c
+execute "so ".g:rc_path."_vimrc_eslint"
+
+" project local source
+let s:rootDir = finddir('.git/..', expand('%:p:h').';')
+let s:localrc = s:rootDir."/.vimrc"
+if filereadable(s:localrc)
+	execute "so ".s:localrc
+endif
+
 
 " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

@@ -53,7 +53,6 @@ endfunction
 command! -bar RangerChooser call RangeChooser()
 
 execute "so ".g:rc_path."tabline.vim"
-execute "so ".g:rc_path."_vimrc_eslint"
 
 function TexCompile()
 	let l:path = expand('%:h')

@@ -51,7 +51,6 @@ noremap <Leader>H :call HaskellRun() <CR>
 noremap <Leader>L :call LuaRun() <CR>
 noremap <Leader>N :!start cmd /C npm start && pause <CR>
 
-execute "so ".g:rc_path."_vimrc_eslint"
 call pathogen#infect()
 
 let NERDTreeQuitOnOpen=1
