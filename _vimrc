@@ -87,6 +87,8 @@ command! -nargs=1 Tts call Tts(<f-args>)
 command! Filename execute "let @+ = expand('%:t')"
 set autochdir
 
+" quickfix buffer
+set switchbuf=vsplit
 
 " Leadeer key
 noremap <Leader>z /{<CR>zfa}:noh<CR>

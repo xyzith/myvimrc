@@ -3,8 +3,7 @@ set suffixesadd=.js
 
 function! SearchFromProjectRoot()
 	let l:rootDir = finddir('.git/..', expand('%:p:h').';')
-	echo l:rootDir
-	execute ":vim ".expand('<cWORD>')." ".l:rootDir."/src/**"
+	execute "vim \/".expand('<cword>')."\/j ".l:rootDir."/src/**"
 endfunction
 noremap <Leader>s :call SearchFromProjectRoot()<CR> 
 
