@@ -1,7 +1,7 @@
 " backup and swap dir
 cd $HOME
-execute "set backupdir=".g:rc_path."../vimtmp"
-execute "set directory=".g:rc_path."../vimswp"
+execute "set backupdir=C:\\Users\\taylo\\\.vim\\vimtmp"
+execute "set directory=C:\\Users\\taylo\\\.vim\\vimswp"
 
 let g:fullScreened = 0
 

@@ -16,7 +16,7 @@ set nomodeline
 
 " bufdo hidden buffers
 
-set hidden
+"set hidden
 
 " set ttyfast
 
@@ -87,8 +87,8 @@ command! -nargs=1 Tts call Tts(<f-args>)
 command! Filename execute "let @+ = expand('%:t')"
 set autochdir
 
-" quickfix buffer
-set switchbuf=vsplit
+" open qf in new tab
+set switchbuf+=usetab,newtab
 
 " Leadeer key
 noremap <Leader>z /{<CR>zfa}:noh<CR>
@@ -105,6 +105,8 @@ else
 endif
 
 execute "so ".g:rc_path."_vimrc_eslint"
+
+filetype plugin indent off
 
 " project local source
 let s:rootDir = finddir('.git/..', expand('%:p:h').';')
