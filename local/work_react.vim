@@ -3,7 +3,7 @@ set suffixesadd=.js
 
 function! SearchFromProjectRoot()
 	let l:rootDir = finddir('.git/..', expand('%:p:h').';')
-	execute "vim \/".expand('<cword>')."\/ ".l:rootDir."/src/**"
+	execute "vim \/".expand('<cword>')."\/j ".l:rootDir."/src/**"
 endfunction
 
 function! SearchVisualFromProjectRoot()
@@ -15,7 +15,7 @@ function! SearchVisualFromProjectRoot()
 	endif
 	let l:line=getline('.')
 	let l:visualText = strpart(l:line, column_start - 1, column_end - column_start)
-	execute "vim \/".escape(l:visualText, '\')."\/ ".l:rootDir."/src/**"
+	execute "vim \/".escape(l:visualText, '\')."\/j ".l:rootDir."/src/**"
 endfunction
 
 vnoremap <Leader>s :call SearchVisualFromProjectRoot()<CR> 

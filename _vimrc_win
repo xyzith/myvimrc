@@ -51,8 +51,6 @@ noremap <Leader>H :call HaskellRun() <CR>
 noremap <Leader>L :call LuaRun() <CR>
 noremap <Leader>N :!start cmd /C npm start && pause <CR>
 
-call pathogen#infect()
-
 let NERDTreeQuitOnOpen=1
 noremap <Leader>n :tabnew \| :NERDTree<CR>
 noremap <Leader>v :vnew \| :NERDTree<CR>
