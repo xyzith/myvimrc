@@ -81,14 +81,23 @@ autocmd BufReadPost * :syntax sync fromstart
 autocmd BufWritePost * :syntax sync fromstart
 autocmd FileType * :syntax sync fromstart
 
+" open qf in new tab
+function! ToggleQF()
+	if &switchbuf==''
+		set switchbuf+=usetab,newtab
+		echo 'Open quickfix in new tab'
+	else
+		set switchbuf=
+		echo 'Open quickfix in current tab'
+	endif
+endfunction
+
 " My command
 command! -nargs=1 Stt call Stt(<f-args>)
 command! -nargs=1 Tts call Tts(<f-args>)
 command! Filename execute "let @+ = expand('%:t')"
+command! Qft call ToggleQF()
 set autochdir
-
-" open qf in new tab
-set switchbuf+=usetab,newtab
 
 " Leadeer key
 noremap <Leader>z /{<CR>zfa}:noh<CR>
