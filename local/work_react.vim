@@ -1,13 +1,11 @@
 " gf suffix
 set suffixesadd=.js
 
-function! SearchFromProjectRoot()
-	let l:rootDir = finddir('.git/..', expand('%:p:h').';')
-	execute "vim \/".expand('<cword>')."\/j ".l:rootDir."/src/**"
+function! SearchCwordFromProjectRoot()
+	call SearchFromProjectRoot(expand('<cword>'))
 endfunction
 
 function! SearchVisualFromProjectRoot()
-	let l:rootDir = finddir('.git/..', expand('%:p:h').';')
 	let [line_start, column_start] = getpos("'<")[1:2]
 	let [line_end, column_end] = getpos("'>")[1:2]
 	if line_start != line_end
@@ -15,11 +13,17 @@ function! SearchVisualFromProjectRoot()
 	endif
 	let l:line=getline('.')
 	let l:visualText = strpart(l:line, column_start - 1, column_end - column_start)
-	execute "vim \/".escape(l:visualText, '\')."\/j ".l:rootDir."/src/**"
+	call SearchFromProjectRoot(l:visualText)
+endfunction
+
+function! SearchFromProjectRoot(word)
+	let l:rootDir = finddir('.git/..', expand('%:p:h').';')
+	execute "vim \/".a:word."\/j ".l:rootDir."/src/**"
 endfunction
 
 vnoremap <Leader>s :call SearchVisualFromProjectRoot()<CR> 
-nnoremap <Leader>s :call SearchFromProjectRoot()<CR> 
+nnoremap <Leader>s :call SearchCwordFromProjectRoot()<CR>
+command! -nargs=1 Sfp call SearchFromProjectRoot(<f-args>)
 
 " fg alias path resolve
 function! Inex()
