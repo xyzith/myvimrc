@@ -1,12 +1,6 @@
 " gf suffix
 set suffixesadd=.js,.jsx,
 
-function! SearchFromProjectRoot()
-	let l:rootDir = finddir('.git/..', expand('%:p:h').';')
-	execute "vim \/".expand('<cword>')."\/j ".l:rootDir."/src/**"
-endfunction
-noremap <Leader>s :call SearchFromProjectRoot()<CR> 
-
 " fg alias path resolve
 function! Inex()
 	let l:rootDir = finddir('.git/..', expand('%:p:h').';')

@@ -1,30 +1,5 @@
 " gf suffix
 set suffixesadd=.js
-
-function! SearchCwordFromProjectRoot()
-	call SearchFromProjectRoot(expand('<cword>'))
-endfunction
-
-function! SearchVisualFromProjectRoot()
-	let [line_start, column_start] = getpos("'<")[1:2]
-	let [line_end, column_end] = getpos("'>")[1:2]
-	if line_start != line_end
-		return
-	endif
-	let l:line=getline('.')
-	let l:visualText = strpart(l:line, column_start - 1, column_end - column_start)
-	call SearchFromProjectRoot(l:visualText)
-endfunction
-
-function! SearchFromProjectRoot(word)
-	let l:rootDir = finddir('.git/..', expand('%:p:h').';')
-	execute "vim \/".a:word."\/j ".l:rootDir."/src/**"
-endfunction
-
-vnoremap <Leader>s :call SearchVisualFromProjectRoot()<CR> 
-nnoremap <Leader>s :call SearchCwordFromProjectRoot()<CR>
-command! -nargs=1 Sfp call SearchFromProjectRoot(<f-args>)
-
 " fg alias path resolve
 function! Inex()
 	let l:rootDir = finddir('.git/..', expand('%:p:h').';')

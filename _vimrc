@@ -14,6 +14,8 @@ set noerrorbells visualbell t_vb=
 set modelines=0
 set nomodeline
 
+set suffixesadd+=.js,.tsx,.ts,.mjs,jsx
+
 " bufdo hidden buffers
 
 "set hidden
@@ -65,6 +67,31 @@ function Tts(p1)
 	retab!
 endfunction
 
+" project keyword search
+function! SearchCwordFromProjectRoot()
+	call SearchFromProjectRoot(expand('<cword>'))
+endfunction
+
+function! SearchVisualFromProjectRoot()
+	let [line_start, column_start] = getpos("'<")[1:2]
+	let [line_end, column_end] = getpos("'>")[1:2]
+	if line_start != line_end
+		return
+	endif
+	let l:line=getline('.')
+	let l:visualText = strpart(l:line, column_start - 1, column_end - column_start)
+	call SearchFromProjectRoot(l:visualText)
+endfunction
+
+function! SearchFileNameFromProjectRoot()
+	call SearchFromProjectRoot(expand('%:r'))
+endfunction
+
+function! SearchFromProjectRoot(word)
+	let l:rootDir = finddir('.git/..', expand('%:p:h').';')
+	execute "vim \/".a:word."\/j ".l:rootDir."/src/**"
+endfunction
+
 " Cursor stuff
 set cursorline
 set cursorcolumn
@@ -97,6 +124,8 @@ command! -nargs=1 Stt call Stt(<f-args>)
 command! -nargs=1 Tts call Tts(<f-args>)
 command! Filename execute "let @+ = expand('%:t')"
 command! Qft call ToggleQF()
+command! -nargs=1 Sp call SearchFromProjectRoot(<f-args>)
+command! Spf call SearchFileNameFromProjectRoot()
 set autochdir
 
 " Leadeer key
@@ -105,6 +134,8 @@ noremap <Leader>r :syntax sync fromstart <CR>
 noremap <Leader>' bi'<ESC>ea'<ESC>
 noremap <Leader>" bi"<ESC>ea"<ESC>
 noremap <Leader>} bi{ <ESC>ea }<ESC>
+vnoremap <Leader>s :call SearchVisualFromProjectRoot()<CR>
+nnoremap <Leader>s :call SearchCwordFromProjectRoot()<CR>
 
 " Other source
 if has('unix')
